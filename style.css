@@ -1,0 +1,80 @@
+html {
+    background-color: #2259b3;
+}
+body {
+    display: grid;
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: auto 80px repeat(3, 100px) 80px auto;
+    grid-template-rows: 80px repeat(3, 100px) 80px;
+    grid-gap: 10px;
+}
+.wrapper > div {
+    border-radius: 5px;
+    padding: 1em;
+    color: #d9480f;
+}
+.box {
+    background-color: #ffd8a8;
+    grid-column-start: 3;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: 5;
+    align-self: center;
+    justify-self: center;
+    
+}
+
+.top_arrow {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    
+}
+
+.bottom_arrow {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    
+}
+.left_arrow {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    
+}
+.right_arrow {
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    
+}
+
+.title {
+    align-self: center;
+    text-align: center;
+}
+
+.wrapper > .arrow {
+    background-color: #15a121;
+    content: url("https://freepikpsd.com/wp-content/uploads/2019/10/arrow-bullet-png-1-Transparent-Images-Free.png");
+    max-width:85%;
+    max-height:85%;
+}
+
+.header {
+    width: 300px;
+    height: 100px;
+    justify-self: center;
+    text-align: center;
+}
+
+.arrow_block {
+    background-color: #15a121;
+}

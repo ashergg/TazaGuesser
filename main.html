@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TazaGuesser</title>
+        <link rel="stylesheet" href="style.css">
+        <script src=utils.js></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class=title><h1>TazaGeusser</h1></div>
+        </div>
+        <div class="wrapper">
+            <div class="arrow_block top_arrow" onclick="up()">
+                <img src="up_arrow.png" width="68" height="48">
+            </div>
+            <div class="arrow_block left_arrow" onclick="left()">
+                <img src="left_arrow.png" width="48" height="68">
+            </div>
+            <div class="box">
+                <img class=tile id="tile" src="https://gisviewer.jerusalem.muni.il/ArcGIS/rest/services/Ortho2019/MapServer/tile/7/95772/83034"> 
+            </div>
+            <div class="arrow_block right_arrow" onclick="right()">
+                <img src="right_arrow.png" width="48" height="68">
+            </div>
+            <div class="arrow_block bottom_arrow" onclick="down()">
+                <img src="down_arrow.png" width="68" height="48">
+            </div>
+            
+        </div>
+    </body>
+</html>
