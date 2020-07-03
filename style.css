@@ -13,7 +13,6 @@ body {
 .wrapper > div {
     border-radius: 5px;
     padding: 1em;
-    color: #d9480f;
 }
 .box {
     background-color: #ffd8a8;
@@ -60,21 +59,16 @@ body {
     align-self: center;
     text-align: center;
 }
-
-.wrapper > .arrow {
-    background-color: #15a121;
-    content: url("https://freepikpsd.com/wp-content/uploads/2019/10/arrow-bullet-png-1-Transparent-Images-Free.png");
-    max-width:85%;
-    max-height:85%;
-}
-
 .header {
     width: 300px;
     height: 100px;
     justify-self: center;
     text-align: center;
 }
-
 .arrow_block {
     background-color: #15a121;
+}
+
+.arrow_block:hover{
+    cursor: pointer;
 }
