@@ -68,6 +68,7 @@ xhttp.onreadystatechange = function(){
         x = tile.x
         y = tile.y
         updateImage()
+        setMap(data, coord)
     }
 }
 
@@ -75,3 +76,64 @@ xhttp.open("GET", json_path, true)
 xhttp.send()
 
 
+function setMap(data, coord){
+    require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/geometry/Extent",
+        "esri/geometry/Point",
+        "esri/geometry/SpatialReference",
+        "esri/geometry/projection",
+        "esri/Graphic",
+        "esri/layers/GraphicsLayer"
+    ], function(Map, MapView, Extent, Point, SpatialReference,
+         projection, Graphic, GraphicsLayer) {
+        const wsg = new SpatialReference({wkid:102100});
+        const itm = new SpatialReference({wkid:2039});
+
+        var isrExt = Extent.fromJSON(data["fullExtent"]);
+
+        var isrPoint = new Point({
+            x: coord.x,
+            y: coord.y,
+            spatialReference: itm
+        });
+
+        var graphicsLayer = new GraphicsLayer()
+
+        var map = new Map({
+            basemap: "osm"
+        });
+
+        projection.load().then(function(){
+            var ext = projection.project(isrExt, wsg);
+            var view = new MapView({
+                container: "map01",
+                map: map,
+                extent: ext,
+                zoom: 12
+            });
+            view.on("click", function(event){
+                var pt = projection.project(isrPoint, wsg);
+                var simpleSymbol = {
+                    type: "simple-marker",
+                    color: "blue",
+                    size: "6px"
+                };
+                var pointGraphicOrig = new Graphic({
+                    geometry: pt,
+                    symbol: simpleSymbol
+                });
+                var pointGraphicGuess = new Graphic({
+                    geometry: event.mapPoint,
+                    symbol: simpleSymbol
+                });
+                graphicsLayer.add(pointGraphicOrig);
+                graphicsLayer.add(pointGraphicGuess);
+                map.add(graphicsLayer);
+                view.graphics.add([pointGraphicOrig])
+            })
+
+        });
+    });
+}
