@@ -85,7 +85,7 @@ function setMap(data, coord){
         "esri/geometry/SpatialReference",
         "esri/geometry/projection",
         "esri/Graphic",
-        "esri/layers/GraphicsLayer"
+        "esri/layers/GraphicsLayer",
     ], function(Map, MapView, Extent, Point, SpatialReference,
          projection, Graphic, GraphicsLayer) {
         const wsg = new SpatialReference({wkid:102100});
@@ -114,24 +114,58 @@ function setMap(data, coord){
                 zoom: 12
             });
             view.on("click", function(event){
-                var pt = projection.project(isrPoint, wsg);
-                var simpleSymbol = {
-                    type: "simple-marker",
-                    color: "blue",
-                    size: "6px"
-                };
+                var origPoint = projection.project(isrPoint, wsg);
+                var guessedPoint = event.mapPoint;
+                var flagSymbol = {
+                    type: "picture-marker",
+                    url: "https://ashergg.github.io/TazaGuesser/race_flag.png",
+                    height: 20,
+                    width: 20,
+                    xoffset: 8,
+                    yoffset: 10
+                }
+                var pinSymbol = {
+                    type: "picture-marker",
+                    url: "https://ashergg.github.io/TazaGuesser/red_pin.png",
+                    height: 20,
+                    width: 20,
+                    yoffset: 10
+                }
                 var pointGraphicOrig = new Graphic({
-                    geometry: pt,
-                    symbol: simpleSymbol
+                    geometry: origPoint,
+                    symbol: flagSymbol
                 });
                 var pointGraphicGuess = new Graphic({
-                    geometry: event.mapPoint,
-                    symbol: simpleSymbol
+                    geometry: guessedPoint,
+                    symbol: pinSymbol
                 });
+
+                var polyline = {
+                    type: "polyline",
+                    paths: [
+                        [origPoint.x, origPoint.y],
+                        [guessedPoint.x, guessedPoint.y]
+                    ],
+                    spatialReference: wsg
+                };
+
+                var lineSymbol = {
+                    type: "simple-line",
+                    style: "dash"
+                }
+
+                var polylineGraphic = new Graphic({
+                    geometry: polyline,
+                    symbol: lineSymbol
+                });
+
                 graphicsLayer.add(pointGraphicOrig);
                 graphicsLayer.add(pointGraphicGuess);
+                graphicsLayer.add(polylineGraphic);
                 map.add(graphicsLayer);
-                view.graphics.add([pointGraphicOrig])
+                view.goTo({
+                    target: [guessedPoint, origPoint]
+                })
             })
 
         });
