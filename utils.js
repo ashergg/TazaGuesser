@@ -118,7 +118,7 @@ function setMap(data, coord){
                 var guessedPoint = event.mapPoint;
                 var flagSymbol = {
                     type: "picture-marker",
-                    url: "https://ashergg.github.io/TazaGuesser/race_flag.png",
+                    url: "https://ashergg.github.io/TazaGuesser/img/race_flag.png",
                     height: 20,
                     width: 20,
                     xoffset: 8,
@@ -126,7 +126,7 @@ function setMap(data, coord){
                 }
                 var pinSymbol = {
                     type: "picture-marker",
-                    url: "https://ashergg.github.io/TazaGuesser/red_pin.png",
+                    url: "https://ashergg.github.io/TazaGuesser/img/red_pin.png",
                     height: 20,
                     width: 20,
                     yoffset: 10
