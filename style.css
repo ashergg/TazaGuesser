@@ -52,6 +52,13 @@ html {
     
 }
 
+.return_arrow {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+
 .title {
     align-self: center;
     text-align: center;
@@ -74,4 +81,8 @@ html {
 
 #map01:hover {
     cursor: crosshair;
+}
+
+#return_arrow {
+    background-color: rgb(100, 65, 0);
 }

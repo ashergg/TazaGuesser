@@ -23,6 +23,12 @@ function down(){
     updateImage()
 }
 
+function backHome(){
+    x = tile.x
+    y = tile.y
+    updateImage()
+}
+
 function updateImage(){
     var img_url = [base_url, level, y, x].join('/')
     document.getElementById('tile').src = img_url
